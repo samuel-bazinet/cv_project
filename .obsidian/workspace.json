@@ -1,0 +1,189 @@
+{
+  "main": {
+    "id": "d42c8f5da537bb1d",
+    "type": "split",
+    "children": [
+      {
+        "id": "5422c684be4e2952",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4947a63a78e28293",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Project Ideas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "cd46829437cc2006",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "How to find defects.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3978b6892b88a52f",
+    "type": "split",
+    "children": [
+      {
+        "id": "c4aee47584a95174",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "def76ac1380c7a25",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d141e396dbd60ea2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4ff5cc7524820ac3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "92008be841d525e4",
+    "type": "split",
+    "children": [
+      {
+        "id": "7940100a30a99633",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5116d0c1ec3a1612",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "How to find defects.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c959cf54cecb989b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "How to find defects.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2807198426dc7704",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "0e52e138840c11d2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "How to find defects.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "cd46829437cc2006",
+  "lastOpenFiles": [
+    "output/rd4_7.jpg",
+    "output/rd4_6.jpg",
+    "output/rd4_5.jpg",
+    "output/rd4_4.jpg",
+    "output/rd4_3.jpg",
+    "output/rd4_2.jpg",
+    "output/rd4_1.jpg",
+    "output/rd4_0.jpg",
+    "output/rd3_14.jpg",
+    "output/rd3_13.jpg",
+    "output/rd3_12.jpg",
+    "classify_images.ipynb",
+    "output",
+    "generate_potential_defects.ipynb",
+    "Project Ideas.md",
+    "resources/rd8.jpg.crdownload",
+    "resources/rd7.jpg.crdownload",
+    "resources/rd6.jpg.crdownload",
+    "resources/rd5.jpg.crdownload",
+    "resources/rd4.jpg.crdownload",
+    "resources/rd3.jpg.crdownload",
+    "resources/rd2.jpg.crdownload",
+    "Detecting Road Defects Using Computer Vision.md",
+    "How to find defects.md"
+  ]
+}
