@@ -1,1 +1,4 @@
 /resources/test
+*.aux
+*.log
+*.gz
