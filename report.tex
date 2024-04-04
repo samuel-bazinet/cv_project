@@ -18,6 +18,9 @@
 \usepackage{blindtext}
 \usepackage{parskip}
 \usepackage{etoolbox}
+\usepackage{hyperref}
+
+\graphicspath{ {./resources/report_pics/} }
 
 
 \input{preamble.tex}
@@ -90,20 +93,23 @@ This paper will go over the efforts required to get a relatively competent model
 \label{sec:meth}
 
 Detecting defects on a road is a somewhat complex procedure involving many steps to get the model going. 
-As we are trying to find cracks and potholes, we cannot use simple apttern matching as they very a lot in size, color, and pattern.
-We need a trained model for this.
-This methodology will go over them.
+As we are trying to find cracks and potholes, we cannot use simple pattern matching as they very a lot in size, color, and pattern.
+We need a machine learning model for this.
+To achieve the model, a dataset will need to be created, then the model will be trained, before being used to highlight the defects on images.
 
 \subsection{Finding Potential Defects}
+\label{sec:meth:1}
 
 The first part of finding defects on road is to scan the image for potential defects. 
 Cracks and potholes tend to be very well defined on roads, meaning that Canny edge detection is great way to find them.
 But since roads can contain many edges, a blurring filter is ran beforehands to reduce the noise in the resulting edges.
 Then, the program scans the image and groups the edges into their own objects so that we can extract the potential defects as their own images for later usage.
-To make this easier, a dataclass called `Defect', containing the coordinates of each corner as well as a list of pixels of where the edge as detected, was created. 
+To make this easier, a dataclass called `Defect' was created.
+This dataclass contains the coordinates of the corners of the area containing all the edges, as well as a list of pixels of where the edges were detected.
 This class has a few helepr methods to merge potential defects contained within each other as the assumption was made that they would be part of the same defect.
 It also has a method to ``recenter'' itself around the densest collection of edges for the purpose of training the model with evenly sized images.
-50 images were ran through this ``potential defect extractor'' to collect hundreds of potential defects that could be used for trianing the model that will be used to detect the real defects.
+50 images of damaged roads were ran through this ``potential defect extractor'' to collect hundreds of potential defects that will be used for training the model that will be used to detect the real defects.
+\hyperref[app:train_data]{A subset of those pictures.}
 
 \subsection{Training a Model to Classify the Defects}
 
@@ -114,12 +120,13 @@ The model consists of 7 layers consisting of rescaling, 2D convolutions, pooling
 The data was augmenting using the Keras sequential augmenter, where the data set had images copied with different rotation and zoom levels.
 This is quite useful as generating more images for training is very time consuming.
 The model was trained over 100 epochs, where the training accuracy went from low 30\% to around 80\%,
-and the validation accuracy reached 70\%.
+and the validation accuracy reached 70\% \hyperref[app:model_plot]{(see plot)}.
 The model was saved for access by the actual defect identifier.
 
 \subsection{Applying the model to potential defects and highlighting them on an image}
 
-Using the same method as defined in Section 2.1, we find potential defects, then pass them through the model.
+Using the same method as defined in \hyperref[sec:meth:1]{Section 2.1}, potential defects are found on the target images.
+The model is then loaded into the Jupyter notebook and the potential defects are passed through it, where the predictions are obtained.
 Using the prediction from the model, we draw a red line around predicted potholes, and a green line around predicted cracks.
 Non defects are not highlighted.
 This results into an image where the defects are highlighted so that municipalities and whoever need the data will get to use it.
@@ -127,33 +134,62 @@ This results into an image where the defects are highlighted so that municipalit
 \section{Results}
 \label{sec:resu}
 
-
+The model was tested on \hyperref[app:result_image]{a few pictures} with mixed results. 
+The model is somewhat competent at identifying potholes and cracks, but it often mislabels them and misses quite a few defects as well.
+It is quite sensitive to the resolution of the images and the low validation accuracy is made quite apparent.
 
 \section{Discussion and Conclusions}
 \label{sec:conc}
 
+So is it all the model's fault? 
+Quite frankly, the method used to extract potential defaults is not too good as it is sensitive the resolution of the image.
+This sensitivity is mostly due to the fact that every potential defect needs to be the same size to work on with the model.
+This causes images of higher resolution to have the defect being cropped, thus making it harder for the model to both train and recognize it.
+The method also works under the assumption that defects are often near edges detectable by canny edge detection, 
+but that method has its limits and affects the potential defect extracted from an image.
+The dataset used to train the model only contained a bit over 400 images, 
+which is small enough to lead to potential overfitting, despite the currently low accuracy.
+This is somewhat mitigated by data augmentation, but that method only goes so far.
 
-% Uncomment following to add an acknowledgement section
-% \section*{Acknowledgements}
-
-% Thanks again to \textbf{Person 1} and \textbf{Affiliation A} for their financial support.
-
-% ----------
-% Bibliography
-% ----------
-
-% Uncomment the following and add your references into biblio.bib file
-% \bibliography{./biblio.bib}
-% \bibliographystyle{abbrv}
+Would this model be useful for the target audience?
+In this state, not really.
+But it is a good fondation that can be built upon by giving it more data and making it less sensitive to the original image resolution.
+There were not obvious signs of overfitting in the model, 
+so it is possible that more epochs will give a better accuracy,
+at the cost of longer training.
 
 \appendix
 
 \section{Sample images used in training the model}
+\label{app:train_data}
 
-\section{Model training statistics}
+\subsection{Non defects}
+\includegraphics{rd1_0.jpg}
+\includegraphics{rd2_9.jpg}
+
+\subsection{Cracks}
+\includegraphics{rd1_3.jpg}
+\includegraphics{rd2_2.jpg}
+
+\subsection{Potholes}
+\includegraphics{rd2_5.jpg}
+\includegraphics{rd3_9.jpg}
+
+\section{Model training plot}
+\label{app:model_plot}
+
+\includegraphics{model_plot.png}
 
 \section{Sample resulting images}
+\label{app:result_image}
 
+\includegraphics{result_1.png}
+
+\includegraphics{result_2.png}
+
+\includegraphics{result_3.png}
+
+\includegraphics{result_4.png}
 
 \end{document}
 
